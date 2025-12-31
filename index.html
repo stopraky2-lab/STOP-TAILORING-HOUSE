@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>STOP Tailoring House</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+/* ===== COLORS ===== */
+:root{
+    --main:#0f1f2f;
+    --gold:#d4af37;
+    --gold-soft:rgba(212,175,55,.25);
+}
+
+/* ===== BODY ===== */
+body{
+    margin:0;
+    direction:rtl;
+    font-family:'Cairo',sans-serif;
+    background:
+        linear-gradient(rgba(15,31,47,.85),rgba(15,31,47,.85)),
+        url("https://i.imgur.com/eYMNW7E.jpg") no-repeat center center fixed;
+    background-size:cover;
+    color:#222;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* ===== HEADER ===== */
+.header{
+    background:#fff;
+    border-radius:24px;
+    padding:35px;
+    margin-bottom:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 40px;
+    box-shadow:0 14px 35px rgba(0,0,0,.18);
+    border-top:6px solid var(--gold);
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+    color:var(--main);
+}
+
+.header div{
+    font-size:17px;
+    line-height:1.9;
+}
+
+.ar{text-align:right}
+.en{text-align:left; direction:ltr}
+
+/* ===== THREE SECTIONS ===== */
+.three-sections{
+    display:grid;
+    grid-template-columns:1fr;   /* بدل 3 أعمدة */
+    gap:28px;
+    margin-bottom:50px;
+}
+
+/* ===== SECTION CARD ===== */
+.section{
+    background:linear-gradient(180deg,#ffffff,#faf7f0);
+    border-radius:22px;
+    padding:26px;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.15),
+        inset 0 0 0 1px var(--gold-soft);
+    position:relative;
+    transition:.45s ease;
+}
+
+.section::before{
+    content:"";
+    position:absolute;
+    top:0; right:0;
+    width:90px;
+    height:6px;
+    background:linear-gradient(90deg,var(--gold),#f5e6b3);
+    border-radius:0 22px 0 22px;
+}
+
+.section:hover{
+    transform:none !important;
+    box-shadow:
+        0 22px 45px rgba(0,0,0,.22),
+        inset 0 0 0 1px var(--gold);
+}
+
+.section-title{
+    text-align:center;
+    font-size:28px;   /* أكبر */
+    font-weight:700;
+    color:var(--main);
+    margin-bottom:22px;
+}
+
+.section-title::after{
+    content:"";
+    display:block;
+    width:55px;
+    height:3px;
+    margin:10px auto 0;
+    background:linear-gradient(90deg,var(--gold),#f5e6b3);
+    border-radius:3px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.text{
+    font-size:19px;   /* أوضح */
+    line-height:2;
+}
+
+.highlight{
+    color:var(--gold);
+    font-weight:700;
+}
+
+/* ===== BUTTONS ===== */
+.contact-buttons{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin:55px 0;
+}
+
+.contact-buttons a{
+    text-decoration:none;
+    padding:16px 36px;
+    font-size:18px;
+    font-weight:700;
+    border-radius:45px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 12px 30px rgba(0,0,0,.28);
+    transition:.35s ease;
+}
+
+.contact-buttons a:hover{
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 18px 40px rgba(0,0,0,.38);
+}
+
+.whatsapp{background:linear-gradient(135deg,#25D366,#1ebe5d)}
+.instagram{background:linear-gradient(135deg,#fd5949,#d6249f,#285AEB)}
+.email{background:linear-gradient(135deg,#0072c6,#00a2ff)}
+.call{background:linear-gradient(135deg,#ff5fa2,#ff2f92)}
+.location{background:linear-gradient(135deg,#f5af19,#f12711)}
+
+/* ===== GALLERY ===== */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:26px;
+    justify-items:center;
+}
+
+.gallery img{
+    width:100%;
+    max-width:240px;
+    height:340px;
+    object-fit:cover;
+    border-radius:18px;
+    cursor:pointer;
+    box-shadow:0 14px 30px rgba(0,0,0,.28);
+    transition:.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.06);
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.lightbox img{
+    max-width:85%;
+    max-height:85%;
+}
+
+.close{
+    position:absolute;
+    top:25px;
+    right:35px;
+    font-size:45px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* ===== FOOTER ===== */
+.footer-note{
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    text-align:center;
+    font-size:18px;
+    line-height:2;
+    color:var(--main);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:850px){
+    .header,.row{grid-template-columns:1fr;text-align:center}
+    .en{text-align:center}
+
+    .three-sections{
+        grid-template-columns:1fr; /* تحت بعض */
+        gap:20px;
+    }
+
+    .section{padding:24px}
+    .section-title{font-size:24px}
+    .text{font-size:17px}
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+    <div class="ar"><h1>مشغل ستوب للألبسة</h1></div>
+    <div class="en"><h1>STOP TAILORING HOUSE</h1></div>
+    <div class="ar">رأس الخيمة – الإمارات العربية المتحدة</div>
+    <div class="en">Ras Al Khaimah – United Arab Emirates</div>
+    <div class="ar">📞 97172287308</div>
+    <div class="en">Phone: 97172287308</div>
+</div>
+
+<!-- THREE BOXES -->
+<div class="three-sections">
+
+<div class="section">
+    <div class="section-title">🕒 مواعيد العمل</div>
+    <div class="row">
+        <div class="text">
+            نعمل طوال أيام الأسبوع<br>
+            ما عدا يوم الجمعة والعطلات الرسمية
+            <br><br>
+            🕗 الفترة الصباحية: <span class="highlight">8:00 ص – 1:00 ظ</span><br>
+            🕓 الفترة المسائية: <span class="highlight">4:00 م – 9:00 م</span>
+        </div>
+        <div class="en text">
+            Open all days of the week<br>
+            Except Friday & official holidays
+            <br><br>
+            🕗 Morning: <span class="highlight">8:00 AM – 1:00 PM</span><br>
+            🕓 Evening: <span class="highlight">4:00 PM – 9:00 PM</span>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">✂️ خدماتنا</div>
+    <div class="row">
+        <div class="text">
+            تفصيل وخياطة:<br>
+            • الزي المدرسي<br>
+            • الزي الموحد<br>
+            • زي التخرج<br>
+            • عبايات أوشحة كاب<br>
+            • أعلام الدولة<br>
+        </div>
+        <div class="text en">
+            Tailoring services for:<br>
+            • School uniforms<br>
+            • Corporate wear<br>
+            • Graduation gowns<br>
+            • ABAYA SASHES CAP<br>
+            • UAE FLAGE<br>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">⭐ خبرتنا</div>
+    <div class="row">
+        <div class="text">
+   أكثر من 25 عامًا<br>
+            دقة – التزام – جودة عالية:<br>
+            • أسعار تنافسية<br>
+            • نوعيات ممتازة<br>
+        </div>
+        <div class="text en">
+   Over 25 years<br>
+            Precision & premium quality:<br
+            • GOOD PRICE<br>
+            • GOOD PRICE<br>
+            • VERY GOOG FABRIC<br>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+<div class="contact-buttons">
+    <a class="whatsapp" href="https://wa.me/971503722556" target="_blank">WhatsApp</a>
+    <a class="instagram" href="https://www.instagram.com/stopraky" target="_blank">Instagram</a>
+    <a class="email" href="mailto:Stopraky2@gmail.com">Email</a>
+    <a class="call" href="tel:97172287308">Call</a>
+    <a class="location" href="https://maps.app.goo.gl/tVcSSPmx5u2e3LY76" target="_blank">Location</a>
+</div>
+
+
+<!-- قسم التخرج والأوشحة -->
+<div class="section">
+    <div class="section-title">قسم التخرج والأوشحة | Graduation & Stoles</div>
+    <div class="gallery">
+        <img src="https://i.imgur.com/rrsFhI9.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/RE03ZuF.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/4iXArdd.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/eYP1O2W.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/WKwxCEp.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/owjgKaB.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/6eZe1BR.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/bwGbMZF.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/CeTNcrW.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/KEIKBaQ.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/UDvVn9q.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/rGrAygX.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/OHE1XlY.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/EA6Opma.jpg" onclick="openImg(this.src)">
+
+    </div>
+</div>
+
+<!-- قسم البشت الملكي -->
+<div class="section">
+    <div class="section-title">البشت الملكي | Royal Bisht</div>
+    <div class="gallery">
+        <img src="https://i.imgur.com/imhwQEt.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/iyWUWmO.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/PnGA68A.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/plMIwCp.jpg" onclick="openImg(this.src)">
+    </div>
+</div>
+
+<!-- قسم الصدريات المطرزة -->
+<div class="section">
+    <div class="section-title">الصدريات المطرزة | Embroidered Vests</div>
+    <div class="gallery">
+        <img src="https://i.imgur.com/ZNFYyTm.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/lzdN6h6.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/VPfHh3Z.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/OMbmE74.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/c9TGt3F.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/MMghR6F.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/b66wtaH.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/wFCHItm.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/mLVSiPJ.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/JHNk3IO.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/32dvevq.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/KfOL0Nc.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/8vg2J8K.jpg" onclick="openImg(this.src)">
+        <img src="https://i.imgur.com/5GJzPdF.jpg" onclick="openImg(this.src)">
+    </div>
+</div>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeImg()">×</span>
+    <img id="lightboxImg">
+</div>
+
+<script>
+function openImg(src){
+    document.getElementById("lightbox").style.display="flex";
+    document.getElementById("lightboxImg").src=src;
+}
+function closeImg(){
+    document.getElementById("lightbox").style.display="none";
+}
+</script>
+
+
+<div class="footer-note">
+    للمزيد من الصور والطلبات رجاءً تواصلوا على الأرقام بالصفحة نحن دائمًا نسعد بخدمتكم   مع تحيات مشغل ستوب للألبسة<br>
+    <strong>For more photos and orders, please contact us We are always happy to serve you stop tailoring house</strong>
+    <br><br>
+    </span>
+</div>
+
+</div>
+
+</body>
+</html>
+
+        
+    </span>
+</div>
+
+</body>
+</html>
