@@ -412,7 +412,12 @@ const lightbox = document.getElementById("lightbox");
 const imgBox   = document.getElementById("lightboxImg");
 
 function openImg(src){
-    const fullSrc = src.replace("/thumbs/", "/full/");
+    // يحوّل thumbs إلى full
+    // ويضيف _result قبل .webp
+    const fullSrc = src
+        .replace("/thumbs/", "/full/")
+        .replace(".webp", "_result.webp");
+
     imgBox.src = fullSrc;
     lightbox.style.display = "flex";
 }
